@@ -8,7 +8,17 @@ This repository serves as a personal toolkit, housing various templates, code sn
 
 ## Usage
 
-Feel free to explore the repository and use any code or information that you find helpful. Each directory contains its own README with specific details about its contents and how to use them.
+Feel free to explore the repository and use any code or information that you find helpful.
+
+The repository is designed to be used as a submodule from the base of your repo.
+
+```bash
+git submodule add git@github.com:gphorvath/swiss-army-knife.git
+
+cd swiss-army-knife
+
+make <choose a setup command>
+```
 
 ## Contributing
 
