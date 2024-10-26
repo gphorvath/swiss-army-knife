@@ -1,5 +1,5 @@
 # Exclude all private GitHub links
-exclude = ['github\.com/private-org/.*']
+exclude = ['github\.com/private-org/.*', '../../issues']
 
 # Retry timeouts
 timeout = 10
