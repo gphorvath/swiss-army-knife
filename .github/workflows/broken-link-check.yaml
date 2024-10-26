@@ -1,3 +1,5 @@
+name: Broken Link Check
+
 on:
   schedule:
     - cron: '0 18 * * 0' # run weekly on Sunday evening
@@ -16,3 +18,5 @@ jobs:
     steps:
       - name: Broken Link Check Action
         uses: technote-space/broken-link-checker-action@7820497a025fb09ff736ee11bb8bb12ca715b4fe # v2.3.1
+        env:
+          TARGET: https://github.com/${{ github.repository }}
