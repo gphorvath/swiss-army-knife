@@ -1,0 +1,9 @@
+# Exclude all private GitHub links
+exclude = ['github\.com/private-org/.*']
+
+# Retry timeouts
+timeout = 10
+max_retries = 3
+
+# Cache responses to speed up checks
+cache = true
