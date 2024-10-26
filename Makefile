@@ -14,6 +14,13 @@ configure-label-lint: setup-workflows-dir
 	ln .github/workflows/label-lint.yaml ../.github/workflows/label-lint.yaml
 	@echo "Label linting configured to use Swiss Army Knife!"
 
+configure-link-check: setup-workflows-dir
+	@if [ -f "../.github/workflows/link-check.yaml" ]; then echo "ERROR: .github/workflows/link-check.yaml already exists"; exit 1; fi
+	@if [ -f "../lychee.toml" ]; then echo "ERROR: lychee.toml already exists"; exit 1; fi
+	ln .github/workflows/link-check.yaml ../.github/workflows/link-check.yaml
+	ln lychee.toml ../lychee.toml
+	@echo "Link checking configured to use Swiss Army Knife!"
+
 configure-secret-scan: setup-workflows-dir
 	@if [ -f "../.github/workflows/secret-scan.yaml" ]; then echo "ERROR: .github/workflows/secret-scan.yaml already exists"; exit 1; fi
 	ln .github/workflows/secret-scan.yaml ../.github/workflows/secret-scan.yaml
@@ -28,12 +35,17 @@ remove-label-lint:
 	@if [ -f "../.github/workflows/label-lint.yaml" ]; then rm ../.github/workflows/label-lint.yaml; fi
 	@echo "Label linting removed!"
 
+remove-link-check:
+	@if [ -f "../.github/workflows/link-check.yaml" ]; then rm ../.github/workflows/link-check.yaml; fi
+	@if [ -f "../lychee.toml" ]; then rm ../lychee.toml; fi
+	@echo "Link checking removed!"
+
 remove-secret-scan:
 	@if [ -f "../.github/workflows/secret-scan.yaml" ]; then rm ../.github/workflows/secret-scan.yaml; fi
 	@echo "Secret scanning removed!"
 
-remove-all: remove-commit-lint remove-label-lint remove-secret-scan
+remove-all: remove-commit-lint remove-label-lint remove-link-check remove-secret-scan
 	@echo "All configurations have been removed!"
 
-configure-all: configure-commit-lint configure-label-lint configure-secret-scan
+configure-all: configure-commit-lint configure-label-lint configure-link-check configure-secret-scan
 	@echo "All configurations have been set up to use Swiss Army Knife!"
