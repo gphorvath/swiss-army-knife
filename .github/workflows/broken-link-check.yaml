@@ -2,22 +2,34 @@ name: Broken Link Check
 
 on:
   schedule:
-    - cron: '0 18 * * 0' # run weekly on Sunday evening
-  repository_dispatch: # run manually
-    types: [check-link]
-  pull_request:
+    - cron: '0 0 1 * *'  # Runs monthly on the 1st
+  workflow_dispatch:      # Allows manual trigger
+  push:
     branches:
-      - main
-    types: [opened, edited, synchronize]
+      - main            # Runs on push to main branch
+  pull_request:         # Runs on pull requests
+    types: [opened, synchronize]
 
 jobs:
-  broken-link-check:
+  check-links:
+    name: Check Broken Links
     runs-on: ubuntu-latest
-    name: Broken Link Check
-
+    
     steps:
-      - name: Broken Link Check Action
-        uses: technote-space/broken-link-checker-action@7820497a025fb09ff736ee11bb8bb12ca715b4fe # v2.3.1
-        env:
-          TARGET: https://github.com/${{ github.repository }}
+      - name: Broken Link Checker
+        uses: technote-space/broken-link-checker-action@v2
+        with:
+          TARGET: 'https://github.com/${{ github.repository }}'
+          RECURSIVE: true
+          TITLE: 'Broken Link Found: ${URL}'
+          BODY: |
+            ## Broken Link Report
+            - **URL**: ${URL}
+            - **Status Code**: ${STATUS}
+            - **Parent URL**: ${PARENT}
+            - **Check Time**: ${DATE}
+            
+            Please verify and fix this broken link.
+          
+          LABELS: 'broken-link,bug'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
