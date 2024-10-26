@@ -23,8 +23,6 @@ Key components:
 
 The broken link check workflow scans the repository for any broken links in the documentation. This helps ensure that all links are valid and accessible, improving the overall quality and reliability of the project's documentation.
 
-> Note: will scan on a weekly basis and open issues if any broken links are found.
-
 ## Commit Lint
 
 Based on <https://commitlint.js.org/>.
