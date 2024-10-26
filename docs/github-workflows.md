@@ -9,7 +9,7 @@
 
 ## Lychee Broken Link Check
 
-Based on <https://github.com/lychverse/lychee-action>
+Based on <https://github.com/lycheeverse/lychee-action>
 
 Key components:
 
