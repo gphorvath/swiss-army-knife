@@ -1,6 +1,29 @@
 # GitHub Workflows
 
-## Commit Lint Workflow
+## Table of Contents
+
+- [Lychee Broken Link Check](#lychee-broken-link-check)
+- [Commit Lint](#commit-lint)
+- [Label Lint](#label-lint)
+- [Secret Scanning](#secret-scanning)
+
+## Lychee Broken Link Check
+
+Based on <https://github.com/lycheeverse/lychee-action>
+
+Key components:
+
+```bash
+.  
+├── .lycheeignore
+└── .github  
+    └── workflows  
+        └── broken-link-check.yaml
+```
+
+The broken link check workflow scans the repository for any broken links in the documentation. This helps ensure that all links are valid and accessible, improving the overall quality and reliability of the project's documentation.
+
+## Commit Lint
 
 Based on <https://commitlint.js.org/>.
 
@@ -16,7 +39,7 @@ Key components:
 
 The commit lint workflow ensures that all pull request titles follow a specified convention. This helps maintain a consistent commit history and improves the readability of the project's commit log.
 
-## Label Lint Workflow
+## Label Lint
 
 Based on <https://github.com/yogevbd/enforce-label-action>.
 
@@ -31,7 +54,7 @@ Key components:
 
 The label lint workflow ensures that all pull requests have the appropriate labels before they are merged, helping to categorize and prioritize tasks effectively.
 
-## Secret Scanning Workflow
+## Secret Scanning
 
 For more information:
 
