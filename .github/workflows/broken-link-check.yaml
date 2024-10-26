@@ -1,0 +1,18 @@
+on:
+  schedule:
+    - cron: '0 18 * * 0' # run weekly on Sunday evening
+  repository_dispatch: # run manually
+    types: [check-link]
+  pull_request:
+    branches:
+      - main
+    types: [opened, edited, synchronize]
+
+jobs:
+  broken-link-check:
+    runs-on: ubuntu-latest
+    name: Broken Link Check
+
+    steps:
+      - name: Broken Link Check Action
+        uses: technote-space/broken-link-checker-action@7820497a025fb09ff736ee11bb8bb12ca715b4fe # v2.3.1
