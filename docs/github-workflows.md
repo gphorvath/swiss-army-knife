@@ -2,20 +2,20 @@
 
 ## Table of Contents
 
-- [Broken Link Check](#broken-link-check)
+- [Lychee Broken Link Check](#lychee-broken-link-check)
 - [Commit Lint](#commit-lint)
 - [Label Lint](#label-lint)
 - [Secret Scanning](#secret-scanning)
 
-## Broken Link Check
+## Lychee Broken Link Check
 
 Based on <https://github.com/technote-space/broken-link-checker-action>
-
 
 Key components:
 
 ```bash
 .  
+├── lychee.toml
 └── .github  
     └── workflows  
         └── broken-link-check.yaml
