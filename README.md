@@ -34,7 +34,7 @@ This repository reflects my personal experiences and preferences. While I strive
 
 ## Contact
 
-If you have any questions or would like to discuss anything in this repository, feel free to open an issue or reach out to me directly.
+If you have any questions or would like to discuss anything in this repository, feel free to [open an issue](../../issues) or reach out to me directly.
 
 ---
 
