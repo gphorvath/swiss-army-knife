@@ -16,9 +16,9 @@ configure-label-lint: setup-workflows-dir
 
 configure-link-check: setup-workflows-dir
 	@if [ -f "../.github/workflows/link-check.yaml" ]; then echo "ERROR: .github/workflows/link-check.yaml already exists"; exit 1; fi
-	@if [ -f "../lychee.toml" ]; then echo "ERROR: lychee.toml already exists"; exit 1; fi
+	@if [ -f "../.lycheeignore" ]; then echo "ERROR: .lycheeignore already exists"; exit 1; fi
 	ln .github/workflows/link-check.yaml ../.github/workflows/link-check.yaml
-	ln lychee.toml ../lychee.toml
+	ln .lycheeignore ../.lycheeignore
 	@echo "Link checking configured to use Swiss Army Knife!"
 
 configure-secret-scan: setup-workflows-dir
@@ -37,7 +37,7 @@ remove-label-lint:
 
 remove-link-check:
 	@if [ -f "../.github/workflows/link-check.yaml" ]; then rm ../.github/workflows/link-check.yaml; fi
-	@if [ -f "../lychee.toml" ]; then rm ../lychee.toml; fi
+	@if [ -f "../.lycheeignore" ]; then rm ../.lycheeignore; fi
 	@echo "Link checking removed!"
 
 remove-secret-scan:

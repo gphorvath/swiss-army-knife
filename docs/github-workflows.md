@@ -15,7 +15,7 @@ Key components:
 
 ```bash
 .  
-├── lychee.toml
+├── .lycheeignore
 └── .github  
     └── workflows  
         └── broken-link-check.yaml
