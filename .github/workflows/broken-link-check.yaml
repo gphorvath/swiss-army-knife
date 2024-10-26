@@ -1,35 +1,44 @@
-name: Broken Link Check
+name: Check Links
 
 on:
-  schedule:
-    - cron: '0 0 1 * *'  # Runs monthly on the 1st
-  workflow_dispatch:      # Allows manual trigger
-  push:
+  # Run on pull requests
+  pull_request:
     branches:
-      - main            # Runs on push to main branch
-  pull_request:         # Runs on pull requests
-    types: [opened, synchronize]
+      - main
+  # Run on schedule every week
+  schedule:
+    - cron: '0 0 * * 0'
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   check-links:
-    name: Check Broken Links
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Broken Link Checker
-        uses: technote-space/broken-link-checker-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
         with:
-          TARGET: 'https://github.com/${{ github.repository }}'
-          RECURSIVE: true
-          TITLE: 'Broken Link Found: ${URL}'
-          BODY: |
-            ## Broken Link Report
-            - **URL**: ${URL}
-            - **Status Code**: ${STATUS}
-            - **Parent URL**: ${PARENT}
-            - **Check Time**: ${DATE}
-            
-            Please verify and fix this broken link.
-          
-          LABELS: 'broken-link,bug'
+          args: --verbose --no-progress './**/*.md' './**/*.html'
+          fail: true
+          format: markdown
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Issue on Link Check Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const checkOutput = fs.readFileSync('lychee.md', 'utf8');
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              title: '🔗 Broken links detected',
+              body: `Link checker detected broken links:\n\n${checkOutput}`,
+              labels: ['broken-links']
+            });
