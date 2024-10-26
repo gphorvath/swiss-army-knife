@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-- [Lychee Broken Link Check](#lychee-broken-link-check)
+- [Lychee Link Check](#lychee-link-check)
 - [Commit Lint](#commit-lint)
 - [Label Lint](#label-lint)
 - [Secret Scanning](#secret-scanning)
 
-## Lychee Broken Link Check
+## Lychee Link Check
 
 Based on <https://github.com/lycheeverse/lychee-action>
 
@@ -18,7 +18,7 @@ Key components:
 ├── .lycheeignore
 └── .github  
     └── workflows  
-        └── broken-link-check.yaml
+        └── link-check.yaml
 ```
 
 The broken link check workflow scans the repository for any broken links in the documentation. This helps ensure that all links are valid and accessible, improving the overall quality and reliability of the project's documentation.
@@ -58,8 +58,8 @@ The label lint workflow ensures that all pull requests have the appropriate labe
 
 For more information:
 
-* <https://docs.github.com/en/code-security/secret-scanning>
-* <https://github.com/trufflesecurity/trufflehog>
+- <https://docs.github.com/en/code-security/secret-scanning>
+- <https://github.com/trufflesecurity/trufflehog>
 
 Key components:
 
