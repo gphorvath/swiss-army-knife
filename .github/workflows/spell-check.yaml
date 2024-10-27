@@ -1,11 +1,14 @@
-name: 'Check spelling'
-on: # rebuild any PRs and main branch changes
-  pull_request:
-  push:
+name: 'Check Spelling'
+on:
+    pull_request:
+        branches:
+        - main
+    workflow_dispatch: # allow manual trigger
+
 
 jobs:
   spellcheck:
-    name: 'Check spelling'
+    name: 'Check Spelling'
     runs-on: ubuntu-latest
     permissions:
       contents: read
