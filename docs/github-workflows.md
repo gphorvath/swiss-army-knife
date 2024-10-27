@@ -22,7 +22,7 @@ Key components:
         └── spell-check.yaml
 ```
 
-The spell check worflow scans the repository for any spelling errors in the documentation and code. This helps ensure that the project's documentation and code are free from typos and spelling mistakes, improving readability and professionalism.
+The spell check workflow scans the repository for any spelling errors in the documentation and code. This helps ensure that the project's documentation and code are free from typos and spelling mistakes, improving readability and professionalism.
 
 ## Lychee Link Check
 
