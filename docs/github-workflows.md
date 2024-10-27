@@ -2,10 +2,27 @@
 
 ## Table of Contents
 
+- [cSpell Spell Check](#cspell-spell-check)
 - [Lychee Link Check](#lychee-link-check)
 - [Commit Lint](#commit-lint)
 - [Label Lint](#label-lint)
 - [Secret Scanning](#secret-scanning)
+
+## cSpell Spell Check
+
+Based on <https://github.com/streetsidesoftware/cspell>.
+
+Key components:
+
+```bash
+.  
+├── cspell.json  
+└── .github  
+    └── workflows  
+        └── spell-check.yaml
+```
+
+The spell check workflow scans the repository for any spelling errors in the documentation and code. This helps ensure that the project's documentation and code are free from typos and spelling mistakes, improving readability and professionalism.
 
 ## Lychee Link Check
 

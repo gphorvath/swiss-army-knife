@@ -2,6 +2,13 @@
 setup-workflows-dir:
 	@if [ ! -d "../.github/workflows" ]; then mkdir -p ../.github/workflows; fi
 
+configure-spell-check: setup-workflows-dir
+	@if [ -f "../.github/workflows/spell-check.yaml" ]; then echo "ERROR: .github/workflows/spell-check.yaml already exists"; exit 1; fi
+	@if [ -f "../cspell.json" ]; then echo "ERROR: cspell.json already exists"; exit 1; fi
+	ln .github/workflows/spell-check.yaml ../.github/workflows/spell-check.yaml
+	ln cspell.json ../cspell.json
+	@echo "Spell checking configured to use Swiss Army Knife!"
+
 configure-commit-lint: setup-workflows-dir
 	@if [ -f "../.github/workflows/commit-lint.yaml" ]; then echo "ERROR: .github/workflows/commit-lint.yaml already exists"; exit 1; fi
 	@if [ -f "../commitlint.config.js" ]; then echo "ERROR: commitlint.config.js already exists"; exit 1; fi
@@ -26,6 +33,11 @@ configure-secret-scan: setup-workflows-dir
 	ln .github/workflows/secret-scan.yaml ../.github/workflows/secret-scan.yaml
 	@echo "Secret scanning configured to use Swiss Army Knife!"
 
+remove-spell-check:
+	@if [ -f "../.github/workflows/spell-check.yaml" ]; then rm ../.github/workflows/spell-check.yaml; fi
+	@if [ -f "../cspell.json" ]; then rm ../cspell.json; fi
+	@echo "Spell checking removed!"
+
 remove-commit-lint:
 	@if [ -f "../.github/workflows/commit-lint.yaml" ]; then rm ../.github/workflows/commit-lint.yaml; fi
 	@if [ -f "../commitlint.config.js" ]; then rm ../commitlint.config.js; fi
@@ -44,8 +56,8 @@ remove-secret-scan:
 	@if [ -f "../.github/workflows/secret-scan.yaml" ]; then rm ../.github/workflows/secret-scan.yaml; fi
 	@echo "Secret scanning removed!"
 
-remove-all: remove-commit-lint remove-label-lint remove-link-check remove-secret-scan
+remove-all: remove-spell-check remove-commit-lint remove-label-lint remove-link-check remove-secret-scan
 	@echo "All configurations have been removed!"
 
-configure-all: configure-commit-lint configure-label-lint configure-link-check configure-secret-scan
+configure-all: configure-spell-check configure-commit-lint configure-label-lint configure-link-check configure-secret-scan
 	@echo "All configurations have been set up to use Swiss Army Knife!"
