@@ -1,4 +1,6 @@
-# GitHub Workflows
+# Automation
+
+These workflows and actions will simplify hygiene by automating the check.
 
 ## Table of Contents
 
