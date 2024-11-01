@@ -1,63 +1,20 @@
+.PHONY: help setup-workflows-dir configure-spell-check configure-commit-lint configure-label-lint configure-link-check configure-secret-scan remove-spell-check remove-commit-lint remove-label-lint remove-link-check remove-secret-scan remove-all configure-all
 
-setup-workflows-dir:
-	@if [ ! -d "../.github/workflows" ]; then mkdir -p ../.github/workflows; fi
+include make/gh-templates.mk
+include make/gh-automation.mk
 
-configure-spell-check: setup-workflows-dir
-	@if [ -f "../.github/workflows/spell-check.yaml" ]; then echo "ERROR: .github/workflows/spell-check.yaml already exists"; exit 1; fi
-	@if [ -f "../cspell.json" ]; then echo "ERROR: cspell.json already exists"; exit 1; fi
-	ln .github/workflows/spell-check.yaml ../.github/workflows/spell-check.yaml
-	ln cspell.json ../cspell.json
-	@echo "Spell checking configured to use Swiss Army Knife!"
+help: ## Display this help information. Use 'make help <prefix>' to filter targets
+	@if [ "$(filter-out help,$(MAKECMDGOALS))" ]; then \
+		awk 'BEGIN {FS = ":.*##"; printf "\033[36m%-30s\033[0m %s\n", "Target", "Description"} \
+		/^$(filter-out help,$(MAKECMDGOALS))[a-zA-Z0-9_-]*:.*?##/ { printf "\033[36m%-30s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST); \
+	else \
+		awk 'BEGIN {FS = ":.*##"; printf "\033[36m%-30s\033[0m %s\n", "Target", "Description"} \
+		/^[a-zA-Z0-9_-]+:.*?##/ { printf "\033[36m%-30s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST); \
+	fi
 
-configure-commit-lint: setup-workflows-dir
-	@if [ -f "../.github/workflows/commit-lint.yaml" ]; then echo "ERROR: .github/workflows/commit-lint.yaml already exists"; exit 1; fi
-	@if [ -f "../commitlint.config.js" ]; then echo "ERROR: commitlint.config.js already exists"; exit 1; fi
-	ln .github/workflows/commit-lint.yaml ../.github/workflows/commit-lint.yaml
-	ln commitlint.config.js ../commitlint.config.js
-	@echo "Commit linting configured to use Swiss Army Knife!"
+%: # Catch-all rule to allow additional arguments
+	@:
 
-configure-label-lint: setup-workflows-dir
-	@if [ -f "../.github/workflows/label-lint.yaml" ]; then echo "ERROR: .github/workflows/label-lint.yaml already exists"; exit 1; fi
-	ln .github/workflows/label-lint.yaml ../.github/workflows/label-lint.yaml
-	@echo "Label linting configured to use Swiss Army Knife!"
+install: templates-install workflows-install ## Installs all of the artifacts contained in Swiss Army Knife
 
-configure-link-check: setup-workflows-dir
-	@if [ -f "../.github/workflows/link-check.yaml" ]; then echo "ERROR: .github/workflows/link-check.yaml already exists"; exit 1; fi
-	@if [ -f "../.lycheeignore" ]; then echo "ERROR: .lycheeignore already exists"; exit 1; fi
-	ln .github/workflows/link-check.yaml ../.github/workflows/link-check.yaml
-	ln .lycheeignore ../.lycheeignore
-	@echo "Link checking configured to use Swiss Army Knife!"
-
-configure-secret-scan: setup-workflows-dir
-	@if [ -f "../.github/workflows/secret-scan.yaml" ]; then echo "ERROR: .github/workflows/secret-scan.yaml already exists"; exit 1; fi
-	ln .github/workflows/secret-scan.yaml ../.github/workflows/secret-scan.yaml
-	@echo "Secret scanning configured to use Swiss Army Knife!"
-
-remove-spell-check:
-	@if [ -f "../.github/workflows/spell-check.yaml" ]; then rm ../.github/workflows/spell-check.yaml; fi
-	@if [ -f "../cspell.json" ]; then rm ../cspell.json; fi
-	@echo "Spell checking removed!"
-
-remove-commit-lint:
-	@if [ -f "../.github/workflows/commit-lint.yaml" ]; then rm ../.github/workflows/commit-lint.yaml; fi
-	@if [ -f "../commitlint.config.js" ]; then rm ../commitlint.config.js; fi
-	@echo "Commit linting removed!"
-
-remove-label-lint:
-	@if [ -f "../.github/workflows/label-lint.yaml" ]; then rm ../.github/workflows/label-lint.yaml; fi
-	@echo "Label linting removed!"
-
-remove-link-check:
-	@if [ -f "../.github/workflows/link-check.yaml" ]; then rm ../.github/workflows/link-check.yaml; fi
-	@if [ -f "../.lycheeignore" ]; then rm ../.lycheeignore; fi
-	@echo "Link checking removed!"
-
-remove-secret-scan:
-	@if [ -f "../.github/workflows/secret-scan.yaml" ]; then rm ../.github/workflows/secret-scan.yaml; fi
-	@echo "Secret scanning removed!"
-
-remove-all: remove-spell-check remove-commit-lint remove-label-lint remove-link-check remove-secret-scan
-	@echo "All configurations have been removed!"
-
-configure-all: configure-spell-check configure-commit-lint configure-label-lint configure-link-check configure-secret-scan
-	@echo "All configurations have been set up to use Swiss Army Knife!"
+remove: templates-remove workflows-remove ## UNSAFE: Removes all of the artifacts contained in Swiss Army Knife
