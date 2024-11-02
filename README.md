@@ -1,36 +1,49 @@
 # Swiss Army Knife
 
-A curated collection of templates and lessons learned from my personal journey as a developer.
+![](docs/images/swiss-army-knife.jpeg)
 
 ## Overview
 
-This repository serves as a personal toolkit, housing various templates, code snippets, and documented insights gathered throughout my development career. It's designed to be a quick reference and a source of reusable components for future projects.
+The goal of **Swiss Army Knife** is to provide a set of commonly used templates and automation to jump-start new projects.
 
 ## Usage
 
-Feel free to explore the repository and use any code or information that you find helpful.
+### Option 1: Most or All
 
-The repository is designed to be used as a submodule from the base of your repo.
+This repository is designed to be used as a submodule or cloned directly into the root of your new project.
 
 ```bash
-git submodule add git@github.com:gphorvath/swiss-army-knife.git
+# clone or submodule this repo into the root of your new project
 
 cd swiss-army-knife
 
-make <choose a setup command>
+make help       # To see all the various components
+
+make install    # Installs everything
 ```
+
+### Option 2: Cherry Pick
+
+To cherry-pick examples from this repo, check out the [/docs](/docs/) section for all the different components. Some components have multiple files (e.g., workflows with config files), so double-check the project tree to ensure you get everything.
+
+## FAQ
+
+### Why not simply use a GitHub Template Repository?
+
+The hope is that this repo ultimately fixes two main problems with template repos:
+
+1. Retrofitting existing repos
+2. Propagating changes and updates
+
+It is not impossible to do these things, but the process is generally manual.
 
 ## Contributing
 
-While this is primarily a personal collection, I welcome suggestions and improvements. If you have ideas or spot any issues, please open an issue or submit a pull request.
+Suggestions and improvements welcome! If you have ideas or spot any issues, please open an issue or submit a pull request.
 
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## Disclaimer
-
-This repository reflects my personal experiences and preferences. While I strive to maintain best practices, always use your judgment when applying these templates and lessons to your own projects.
 
 ## Contact
 
