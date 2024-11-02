@@ -4,7 +4,7 @@
 
 ## Overview
 
-The goal of **Swiss Army Knife** is to provide a set of commonly used templates and automation to jump-start new projects.
+**Swiss Army Knife** is a set of commonly used templates and automation to jump-start new projects. The goal of this repo is to add some amount of quality control prior to writing code, with as little effort as possible.
 
 ## Usage
 
