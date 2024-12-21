@@ -4,10 +4,14 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "commitlint",
+        "horvath",
+        "lycheeignore",
+        "lycheeverse",
         "trufflehog",
         "trufflesecurity",
-        "lycheeignore",
-        "commitlint"
+        "wontfix",
+        "yogevbd"
     ],
     "ignoreWords": [],
     "import": []

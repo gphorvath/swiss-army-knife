@@ -1,6 +1,6 @@
 # Swiss Army Knife
 
-![](docs/images/swiss-army-knife.jpeg)
+![Swiss Army Knife](docs/images/swiss-army-knife.jpeg)
 
 ## Overview
 
